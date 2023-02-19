@@ -79,10 +79,18 @@ function splitText() {
         copyButton.addEventListener("click", function () {
             textarea.select();
             document.execCommand("copy");
+            textarea.classList.add("is-copied");
         });
         div.appendChild(copyButton);
         output.appendChild(div);
+
     });
+}
+
+function handleClick(event) {
+    const clickedTextArea = event.target;
+    clickedTextArea.classList.add("clicked");
+    // その他の処理...
 }
 
 // 入力エリアをクリア
