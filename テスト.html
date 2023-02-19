@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>テスト</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='js/テスト.js'></script>
+</head>
+
+<body>
+    <!-- 分割文字数指定 -->
+    <p><input id="max-length-input" type="number" step="1000" min="1000" max="10000" value="5000">　文字で分割</p>
+    <!-- 入力エリア -->
+    <div id="input-area" class="input-area" ondragover="allowDrop(event)" ondrop="dropTextOrFile(event)">
+        <textarea id="text-input" class="text-input" placeholder="テキストを入力するかファイルをドロップしてください。"></textarea>
+    </div>
+    <!-- 入力文字数 -->
+    <p>入力文字数: <span id="input-characters"></span></p>
+</body>
+
+</html>

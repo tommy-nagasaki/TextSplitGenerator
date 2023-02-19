@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>テキスト分割ジェネレーター</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/select.css'>
+    <script src='js/select.js'></script>
+</head>
+
+<body>
+    <!-- <div class="center"> -->
+        <!-- 分割文字数指定 -->
+        <p><input id="max-length-input" type="number" step="1000" min="1000" max="10000" value="5000">　文字で分割</p>
+        <!-- 入力エリア -->
+        <div id="input-area" class="input-area" ondragover="allowDrop(event)" ondrop="dropTextOrFile(event)">
+            <textarea id="text-input" class="text-input" placeholder="テキストを入力するかファイルをドロップしてください。"></textarea>
+        </div>
+        <!-- 入力文字数 -->
+        <p><span id="input-characters"></span></p>
+        <!-- 分割ボタン -->
+        <button onclick="splitText()">分割</button>
+        <!-- 消去ボタン -->
+        <button onclick="clearInput()">消去</button>
+        <!-- 分割数 -->
+        <p id="output-stats"></p>
+        <!-- 分割結果 -->
+        <div id="output"></div>
+        <!-- 分割文字数 -->
+
+
+    <!-- </div> -->
+</body>
+
+</html>
