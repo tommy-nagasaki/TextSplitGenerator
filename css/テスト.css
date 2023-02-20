@@ -1,4 +1,143 @@
-textarea.clicked {
-    background-color: #eee;
+/* 全体を中央配置 */
+body {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+
+}
+
+/* タイトルテキスト */
+h1 {
+    margin-top: 30px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* 機能説明 */
+h2 {
+    margin-top: 15px;
+    margin-bottom: 30px;
+    font-size: 15px;
+
+}
+
+
+/* 入力欄 */
+.text-input {
+    width: 500px;
+    height: 100px;
+    padding: 8px 10px;
+    border: 1px solid #d2d2d2;
+    border-radius: 5px;
+    background: #f7f7f7;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+/* 入力欄の中の文字 */
+.text-input::placeholder {
     color: #999;
+}
+
+/* キャッチ */
+h3 {
+    font-size: 10px;
+    margin-bottom: 30px;
+    color: #999;
+}
+
+
+/* コントロールエリア（分割数、分割ボタン、入力文字数、消去ボタン） */
+.control {
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+    margin-bottom: 30px;
+}
+
+/* コントロールエリア左（分割数、分割ボタン） */
+.control-left {
+    display: flex;
+    align-items: center;
+}
+
+/* コントロールエリア右（入力文字数、消去ボタン） */
+.control-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* ボタン */
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    padding: .5em;
+    border: 1px solid #d2d2d2;
+    border-radius: 5px;
+    background-color: #555;
+    color: #fff;
+    font-size: 1em;
+}
+
+button:hover {
+    background-color: #f7f7f7;
+    color: #555;
+}
+
+/* 分割文字数指定エリア */
+.max-length-input {
+    display: flex;
+}
+
+/* 分割文字数のスピンボタンを非表示 */
+/* Chrome/Safari */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: extfield;
+}
+
+#max-length-input {
+    display: flex;
+    align-items: center;
+    width: 50px;
+}
+
+.max-length-input-text {
+    display: flex;
+    align-items: center;
+}
+
+#max-length-input-up {
+    width: 30px;
+}
+
+#max-length-input-down {
+    width: 30px;
+}
+
+
+
+/* 分割結果 */
+.generated-textarea {
+    width: 150px;
+    border: 1px solid #d2d2d2;
+
+}
+
+/* コピーボタンを押した後の分割結果 */
+.generated-textarea.clicked {
+    background-color: #f7f7f7;
+    color: #ffffff;
+    border: 1px solid #d2d2d2;
 }

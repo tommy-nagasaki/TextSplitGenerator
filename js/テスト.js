@@ -22,12 +22,23 @@ function dropTextOrFile(event) {
         textInput.value = `ファイル名: ${data.name}\nタイプ: ${data.type}\nサイズ: ${data.size} bytes`;
     }
 }
+// 分割する文字数を指定する+-ボタン※デフォルトのスピンボタンを使わないため
+document.addEventListener('DOMContentLoaded', function () {
+    const numberInput = document.getElementById('max-length-input');
+    const upButton = document.getElementById('max-length-input-up');
+    const downButton = document.getElementById('max-length-input-down');
+
+    upButton.addEventListener('click', () => numberInput.stepUp());
+    downButton.addEventListener('click', () => numberInput.stepDown());
+});
+
 
 // 文字数をカウントする関数
 function countCharacters() {
     const textInput = document.getElementById("text-input");
     const inputCharacters = document.getElementById("input-characters");
-    inputCharacters.textContent = textInput.value.length;
+    const count = textInput.value.length;
+    inputCharacters.textContent = `${count}文字入力中`;
 }
 
 // 初期表示時に文字数をカウントする
@@ -58,20 +69,23 @@ function splitText() {
         textarea.id = textareaId;
         textarea.type = "text";
         textarea.value = text.replace(/\;/g, "\n");
+        textarea.classList.add("generated-textarea");
         div.appendChild(textarea);
+
 
         // 文字数をカウントする関数
         function countTextAreaCharacters() {
             const characters = textarea.value.length;
-            document.getElementById(`${textareaId}-characters`).textContent = characters;
+            document.getElementById(`${textareaId}-characters`).textContent = `${characters}`;
         }
+
 
         // テキストエリアのイベントにcountTextAreaCharacters関数を登録
         textarea.addEventListener("input", countTextAreaCharacters);
 
         const countSpan = document.createElement("span");
         countSpan.id = `${textareaId}-characters`;
-        countSpan.textContent = `${text.replace(/\;/g, "\n").length}`;
+        countSpan.textContent = `${text.replace(/\;/g, "\n").length}文字`;
         div.appendChild(countSpan);
 
         const copyButton = document.createElement("button");
@@ -79,6 +93,7 @@ function splitText() {
         copyButton.addEventListener("click", function () {
             textarea.select();
             document.execCommand("copy");
+            textarea.classList.add("clicked");
         });
         div.appendChild(copyButton);
         output.appendChild(div);
@@ -88,4 +103,5 @@ function splitText() {
 // 入力エリアをクリア
 function clearInput() {
     document.getElementById("text-input").value = "";
+    document.getElementById("input-characters").textContent = "０文字入力中";
 }

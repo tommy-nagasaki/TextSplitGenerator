@@ -4,34 +4,54 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>テキスト分割ジェネレーター</title>
+    <title>テキスト分割ジェネレーターv1.0.1</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/destyle.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='css/select.css'>
     <script src='js/select.js'></script>
 </head>
 
 <body>
     <!-- <div class="center"> -->
-        <!-- 分割文字数指定 -->
-        <p><input id="max-length-input" type="number" step="1000" min="1000" max="10000" value="5000">　文字で分割</p>
-        <!-- 入力エリア -->
-        <div id="input-area" class="input-area" ondragover="allowDrop(event)" ondrop="dropTextOrFile(event)">
-            <textarea id="text-input" class="text-input" placeholder="テキストを入力するかファイルをドロップしてください。"></textarea>
-        </div>
-        <!-- 入力文字数 -->
-        <p><span id="input-characters"></span></p>
-        <!-- 分割ボタン -->
-        <button onclick="splitText()">分割</button>
-        <!-- 消去ボタン -->
-        <button onclick="clearInput()">消去</button>
-        <!-- 分割数 -->
-        <p id="output-stats"></p>
-        <!-- 分割結果 -->
-        <div id="output"></div>
-        <!-- 分割文字数 -->
+    <h1>テキスト分割ジェネレーターv2.0.0</h1>
+    <h2>指定した文字数内の「。(句点)」や「.(ピリオド)」でテキストを分割</h2>
 
+
+    <!-- 入力エリア -->
+    <div id="input-area" class="input-area" ondragover="allowDrop(event)" ondrop="dropTextOrFile(event)">
+        <textarea id="text-input" class="text-input" placeholder="テキストを入力するかファイルをドロップしてください。"></textarea>
+    </div>
+    <h3>日本語、英語、中国語、韓国語、その他「。(句点)」や「.(ピリオド)」で終わる言語であれば分割できます。</h3>
+    <div class="control">
+        <div class="control-left">
+            <!-- 分割文字数指定 -->
+            <div class="max-length-input">
+                <input type="number" id="max-length-input" step="1000" min="1000" max="10000" value="5000" />
+                <span class="max-length-input-text">文字に</span>
+                <button id="max-length-input-up">+</button>
+                <button id="max-length-input-down">-</button>
+            </div>
+
+            <!-- 分割ボタン -->
+            <button onclick="splitText()">分割</button>
+        </div>
+
+        <div class="control-right">
+            <!-- 入力文字数 -->
+            <p><span id="input-characters">0文字入力中</span></p>
+            <!-- 消去ボタン -->
+            <button onclick="clearInput()">消去</button>
+        </div>
+    </div>
+
+    <!-- 分割数 -->
+    <p id="output-stats"></p>
+    <!-- 分割結果 -->
+    <div id="output"></div>
 
     <!-- </div> -->
+    <div class="bottom-bar">分割ジェネレーター © 2023–2023 Privacy Policy Terms of Use</div>
+
 </body>
 
 </html>
