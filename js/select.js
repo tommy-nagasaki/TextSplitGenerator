@@ -33,20 +33,22 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-// 文字数をカウントする関数
-function countCharacters() {
+window.addEventListener('DOMContentLoaded', () => {
+    // 文字数をカウントする関数
+    function countCharacters() {
+        const textInput = document.getElementById("text-input");
+        const inputCharacters = document.getElementById("input-characters");
+        const count = textInput.value.length;
+        inputCharacters.textContent = `${count}文字入力中`;
+    }
+
+    // 初期表示時に文字数をカウントする
+    countCharacters();
+
+    // 入力エリアのイベントにcountCharacters関数を登録
     const textInput = document.getElementById("text-input");
-    const inputCharacters = document.getElementById("input-characters");
-    const count = textInput.value.length;
-    inputCharacters.textContent = `${count}文字入力中`;
-}
-
-// 初期表示時に文字数をカウントする
-countCharacters();
-
-// 入力エリアのイベントにcountCharacters関数を登録
-const textInput = document.getElementById("text-input");
-textInput.addEventListener("input", countCharacters);
+    textInput.addEventListener("input", countCharacters);
+}, false);
 
 
 // テキスト分割
@@ -56,7 +58,6 @@ function splitText() {
     const maxLen = parseInt(maxLengthInput.value, 10);
     const regexp = new RegExp(`.{1,${maxLen}}[。．！？.]`, "g");
     const splitText = textInput.replace(/\n/g, ";").match(regexp);
-
     const output = document.getElementById("output");
     const statsOutput = document.getElementById("output-stats");
     output.innerHTML = "";

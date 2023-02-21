@@ -154,3 +154,36 @@ input[type="number"] {
     padding: 10px;
     text-align: center;
 }
+
+@media (max-width: 600px) {
+
+    body{
+        margin: 10px;
+    }
+
+    /* スマホ画面サイズ用のCSS */
+    .text-input {
+        width: 100%;
+        
+    }
+
+    h1{
+        font-size: 20px;
+    }
+    h2{
+        font-size: 12px;
+    }
+
+    .control {
+        width: 100%;
+        font-size: small;
+    }
+
+    button {
+        width: 50px;
+    }
+
+    .bottom-bar {
+        font-size: 10px;
+    }
+}
