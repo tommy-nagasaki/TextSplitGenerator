@@ -1,7 +1,4 @@
-// ドロップを許可
-function allowDrop(event) {
-    event.preventDefault();
-}
+
 // ドロップか入力された時
 function dropTextOrFile(event) {
     event.preventDefault();
