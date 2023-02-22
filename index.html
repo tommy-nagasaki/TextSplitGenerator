@@ -13,45 +13,45 @@
 
 <body>
     
-    <h1>テキスト分割ジェネレーターv1.1.2</h1>
+    <h1>テキスト分割ジェネレーターv1.2.2</h1>
     <h2>指定した文字数内の「。(句点)」や「.(ピリオド)」でテキストを分割</h2>
 
 
     <!-- 入力エリア -->
-    <div id="input-area" class="input-area" ondragover="allowDrop(event)" ondrop="dropTextOrFile(event)">
         <textarea id="text-input" class="text-input" placeholder="テキストを入力するかファイルをドロップしてください。"></textarea>
-    </div>
-    <h3>日本語、英語、中国語、韓国語、その他「。(句点)」や「.(ピリオド)」で終わる言語であれば分割できます。</h3>
-    <div class="control">
-        <div class="control-left">
-            <!-- 分割文字数指定 -->
-            <div class="max-length-input">
-                <input type="number" id="max-length-input" step="1000" min="1000" max="10000" value="5000" />
-                <span class="max-length-input-text">文字に</span>
-                <button id="max-length-input-up">+</button>
-                <button id="max-length-input-down">-</button>
+        </div>
+        <h3>日本語、英語、中国語、韓国語、その他「。(句点)」や「.(ピリオド)」で終わる言語であれば分割できます。</h3>
+        <div class="control">
+            <div class="control-left">
+                <!-- 分割文字数指定 -->
+                <div class="max-length-input">
+                    <input type="number" id="max-length-input" step="1000" min="1000" max="10000" value="5000" />
+                    <span class="max-length-input-text">文字に</span>
+                    <button id="max-length-input-up">+</button>
+                    <button id="max-length-input-down">-</button>
+                </div>
+        
+                <!-- 分割ボタン -->
+                <button onclick="splitText()">分割</button>
             </div>
-
-            <!-- 分割ボタン -->
-            <button onclick="splitText()">分割</button>
+        
+            <div class="control-right">
+                <!-- 入力文字数 -->
+                <p class="length" id="length">0</p>
+                <p>文字を</p>
+                <!-- 消去ボタン -->
+                <button onclick="clearInput()">消去</button>
+            </div>
         </div>
-
-        <div class="control-right">
-            <!-- 入力文字数 -->
-            <p><span id="input-characters">0文字入力中</span></p>
-            <!-- 消去ボタン -->
-            <button onclick="clearInput()">消去</button>
+        
+        <!-- 分割数 -->
+        <p id="output-stats"></p>
+        <!-- 分割結果 -->
+        <div id="output"></div>
+        
+        <!-- フッター -->
+        <div class="bottom-bar">分割ジェネレーター © 2023-2023 利用規約 | <a href="log.html">support@xxxx.com</a>
         </div>
-    </div>
-
-    <!-- 分割数 -->
-    <p id="output-stats"></p>
-    <!-- 分割結果 -->
-    <div id="output"></div>
-
-    <!-- フッター -->
-    <div class="bottom-bar">分割ジェネレーター © 2023-2023 利用規約 | <a href="log.html">support@xxxx.com</a>
-    </div>
     
 
 </body>

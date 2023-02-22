@@ -1,57 +1,42 @@
-
-// ドロップか入力された時
-function dropTextOrFile(event) {
-    event.preventDefault();
-    // ID"text-input"を取得
+// テキストエリアに入力された文字数を表示する
+window.addEventListener('DOMContentLoaded', () => {
     const textInput = document.getElementById("text-input");
-    // ファイルオブジェクト取得
-    const data = event.dataTransfer.items[0].getAsFile();
-    // もしテキストファイルなら
-    if (data.type === "text/plain") {
-        const reader = new FileReader();
-        reader.readAsText(data);
-        reader.onload = function () {
-            textInput.value = reader.result;
-            countCharacters(); // テキストの変更を反映して文字数を再カウント
-        };
-        // 違ったら
-    } else {
-        textInput.value = `ファイル名: ${data.name}\nタイプ: ${data.type}\nサイズ: ${data.size} bytes`;
-    }
-}
-// 分割する文字数を指定する+-ボタン※デフォルトのスピンボタンを使わないため
-document.addEventListener('DOMContentLoaded', function () {
-    const numberInput = document.getElementById('max-length-input');
-    const upButton = document.getElementById('max-length-input-up');
-    const downButton = document.getElementById('max-length-input-down');
+    const length = document.querySelector('.length');
 
-    upButton.addEventListener('click', () => numberInput.stepUp());
-    downButton.addEventListener('click', () => numberInput.stepDown());
+    textInput.addEventListener('input', () => {
+        length.textContent = textInput.value.length;
+    }, false);
+
+    textInput.addEventListener('drop', (event) => {
+        event.preventDefault();
+
+        const data = event.dataTransfer.items[0].getAsFile();
+
+        if (data.type === "text/plain") {
+            const reader = new FileReader();
+            reader.readAsText(data);
+            reader.onload = function () {
+                textInput.value = reader.result;
+                length.textContent = textInput.value.length;
+            };
+        } else {
+            textInput.value = `ファイル名: ${data.name}\nタイプ: ${data.type}\nサイズ: ${data.size} bytes`;
+            length.textContent = textInput.value.length;
+        }
+    }, false);
 });
 
-
-window.addEventListener('DOMContentLoaded', () => {
-    // 文字数をカウントする関数
-    function countCharacters() {
-        const textInput = document.getElementById("text-input");
-        const inputCharacters = document.getElementById("input-characters");
-        const count = textInput.value.length;
-        inputCharacters.textContent = `${count}文字入力中`;
-    }
-
-    // 初期表示時に文字数をカウントする
-    countCharacters();
-
-    // 入力エリアのイベントにcountCharacters関数を登録
-    const textInput = document.getElementById("text-input");
-    textInput.addEventListener("input", countCharacters);
-}, false);
+// ----------------------------------------------------------------------------
 
 
 // テキスト分割
+// テキスト分割イベントを発生させます
 function splitText() {
+    // 変数名テキストインプットにID名テキストインプットの値を入れる
     const textInput = document.getElementById("text-input").value;
+    // 変数名マックスレングスインプットにID名マックスレングスインプットを入れる
     const maxLengthInput = document.getElementById("max-length-input");
+    // 変数名マックスレンは
     const maxLen = parseInt(maxLengthInput.value, 10);
     const regexp = new RegExp(`.{1,${maxLen}}[。．！？.]`, "g");
     const splitText = textInput.replace(/\n/g, ";").match(regexp);
@@ -98,8 +83,26 @@ function splitText() {
     });
 }
 
+// 分割する文字数を指定する+-ボタン※デフォルトのスピンボタンを使わないため
+// HTMLを読み込む
+document.addEventListener('DOMContentLoaded', function () {
+    // 変数名ナンバーインプットにID名マックスレングスインプットを入れる
+    const numberInput = document.getElementById('max-length-input');
+    // 変数名アップボタンにID名マックスレングスインプットアップを入れる
+    const upButton = document.getElementById('max-length-input-up');
+    // 変数名ダウンボタンにID名マックスレングスインプットダウンを入れる
+    const downButton = document.getElementById('max-length-input-down');
+    // 変数名アップボタンがクリックされた時変数名ナンバーインプットがステップアップ
+    upButton.addEventListener('click', () => numberInput.stepUp());
+    // 変数名ダウンボタンがクリックされた時変数名ナンバーインプットがステップダウン
+    downButton.addEventListener('click', () => numberInput.stepDown());
+});
+
+
 // 入力エリアをクリア
 function clearInput() {
+    // IDテキストインプットに入った値をカラにする
     document.getElementById("text-input").value = "";
-    document.getElementById("input-characters").textContent = "０文字入力中";
+    // IDインプットキャラクターズのテキストを０文字入力中にする
+    document.getElementById("length").textContent = "0";
 }
