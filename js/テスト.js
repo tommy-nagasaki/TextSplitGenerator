@@ -1,7 +1,7 @@
-// テキストエリアに入力された文字数を表示する
+// 入力文字数を表示する
 window.addEventListener('DOMContentLoaded', () => {
   const textInput = document.getElementById("text-input");
-  const length = document.querySelector('.length');
+  const length = document.querySelector('.input-text-length');
 
   textInput.addEventListener('input', () => {
     length.textContent = textInput.value.length;
@@ -26,17 +26,10 @@ window.addEventListener('DOMContentLoaded', () => {
   }, false);
 });
 
-// ----------------------------------------------------------------------------
-
-
 // テキスト分割
-// テキスト分割イベントを発生させます
 function splitText() {
-    // 変数名テキストインプットにID名テキストインプットの値を入れる
     const textInput = document.getElementById("text-input").value;
-    // 変数名マックスレングスインプットにID名マックスレングスインプットを入れる
     const maxLengthInput = document.getElementById("max-length-input");
-    // 変数名マックスレンは
     const maxLen = parseInt(maxLengthInput.value, 10);
     const regexp = new RegExp(`.{1,${maxLen}}[。．！？.]`, "g");
     const splitText = textInput.replace(/\n/g, ";").match(regexp);
@@ -83,26 +76,54 @@ function splitText() {
     });
 }
 
-// 分割する文字数を指定する+-ボタン※デフォルトのスピンボタンを使わないため
-// HTMLを読み込む
+// 分割する文字数を増減する+-ボタン※デフォルトのスピンボタンを使わないため
 document.addEventListener('DOMContentLoaded', function () {
-    // 変数名ナンバーインプットにID名マックスレングスインプットを入れる
-    const numberInput = document.getElementById('max-length-input');
-    // 変数名アップボタンにID名マックスレングスインプットアップを入れる
-    const upButton = document.getElementById('max-length-input-up');
-    // 変数名ダウンボタンにID名マックスレングスインプットダウンを入れる
-    const downButton = document.getElementById('max-length-input-down');
-    // 変数名アップボタンがクリックされた時変数名ナンバーインプットがステップアップ
-    upButton.addEventListener('click', () => numberInput.stepUp());
-    // 変数名ダウンボタンがクリックされた時変数名ナンバーインプットがステップダウン
-    downButton.addEventListener('click', () => numberInput.stepDown());
+  // 変数名ナンバーインプットにID名マックスレングスインプットを入れる
+  const numberInput = document.getElementById('max-length-input');
+  // 変数名アップボタンにID名マックスレングスインプットアップを入れる
+  const upButton = document.getElementById('max-length-input-up');
+  // 変数名ダウンボタンにID名マックスレングスインプットダウンを入れる
+  const downButton = document.getElementById('max-length-input-down');
+
+  let intervalID; // タイマーIDを格納する変数
+
+  // アップボタンが長押しされた時の処理
+  upButton.addEventListener('mousedown', () => {
+    numberInput.stepUp();
+    intervalID = setInterval(() => {
+      numberInput.stepUp();
+    }, 100); // 0.1秒ごとにステップアップ
+  });
+  // ダウンボタンが長押しされた時の処理
+  downButton.addEventListener('mousedown', () => {
+    numberInput.stepDown();
+    intervalID = setInterval(() => {
+      numberInput.stepDown();
+    }, 100); // 0.1秒ごとにステップダウン
+  });
+  // 長押しを終了した時の処理
+  document.addEventListener('mouseup', () => {
+    clearInterval(intervalID); // タイマーを解除する
+  });
 });
 
 
-// 入力エリアをクリア
+// 消去ボタン
 function clearInput() {
-    // IDテキストインプットに入った値をカラにする
-    document.getElementById("text-input").value = "";
-    // IDインプットキャラクターズのテキストを０文字入力中にする
-    document.getElementById("length").textContent = "0";
+  // 入力エリア内のテキストを削除
+  document.getElementById("text-input").value = "";
+  // 入力文字数カウントをリセット
+  document.getElementById("input-text-length").textContent = "0";
+
+  // output-stats内の全子要素を削除
+  const outputStats = document.getElementById("output-stats");
+  while (outputStats.firstChild) {
+    outputStats.removeChild(outputStats.firstChild);
+  }
+
+  // output内の全子要素を削除
+  const output = document.getElementById("output");
+  while (output.firstChild) {
+    output.removeChild(output.firstChild);
+  }
 }
