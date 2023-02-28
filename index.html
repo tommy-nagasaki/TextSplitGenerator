@@ -4,9 +4,11 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name="description" content="長い文章をお好きな文字数内の「。(句点)」か「.(ピリオド)」で分割します。文章や単語の途中で途切れることはありません。指定した文字数内、最後の「。(句点)」か「.(ピリオド)」で区切ります。日本語以外の言語にも対応しています。">
     <title>テキスト分割ジェネレーター</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='css/destyle.css'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=M+PLUS+1p">
     <link rel='stylesheet' type='text/css' media='screen' href='css/select.css'>
     <script src='js/select.js'></script>
 </head>
@@ -14,7 +16,7 @@
 <body>
     <!-- タイトル -->
     <container class="title-container">
-        <h1>テキスト分割ジェネレーターv1.3.2</h1>
+        <h1>テキスト分割ジェネレーターv1.3.3</h1>
         <h2>指定した文字数内の「。(句点)」や「.(ピリオド)」でテキストを分割</h2>
     </container>
 
@@ -48,11 +50,18 @@
     </container>
 
     <!-- 結果 -->
-    <container class="result-container">
+    <container class="output-container">
         <!-- いくつに分割されたか -->
-        <p id="output-stats"></p>
+        <p id="output-stats">
+            <!-- ココに子要素`<p> ${splitText.length} 個に分割しました。</p>`が入る -->
+        </p>
         <!-- 分割後のテキスト -->
-        <div id="output"></div>
+        <div id="output">
+            <!-- ココに子要素.createElement("div")が入る -->
+                <!-- ココに孫要素.createElement("textarea")が入る -->
+                <!-- ココに孫要素.createElement("span")が入る -->
+                <!-- ココに孫要素.createElement("button")が入る -->
+        </div>
     </container>
 
     <!-- フッター -->

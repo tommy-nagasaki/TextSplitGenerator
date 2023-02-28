@@ -1,9 +1,18 @@
+/* 全体のフォント */
+.wf-mplus1p {
+    font-family: "M PLUS 1p";
+}
+
+/* .text {
+    transform: rotate(0.05deg);
+} */
+
 /* 全体を中央配置 */
 body {
     display: flex;
     flex-flow: column;
     align-items: center;
-
+    font-family: "M PLUS 1p";
 }
 
 /* タイトルテキスト */
@@ -78,13 +87,13 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 70px;
+    width: 95px;
     padding: .5em;
-    border: 1px solid #d2d2d2;
     border-radius: 5px;
-    background-color: #777;
+    background-color: #7f7f7f;
     color: #fff;
     font-size: 1em;
+    margin: 2px;
 }
 
 button:hover {
@@ -129,22 +138,63 @@ input[type="number"] {
     width: 30px;
 }
 
+.output-container {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+}
+
+#output-stats p {
+    padding-left: 20px;
+    margin-bottom: 15px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #444;
+}
+
+#output {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    width: 100%;
+    background-color: #f7f7f7;
+    border-radius: 5px;
+}
+
+#output div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 5px;
+    width: 113px;
+    height: 115px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
 
 
-/* 分割結果 */
-.generated-textarea {
-    width: 150px;
+#output textarea {
+    width: 95px;
+    height: 40px;
+    margin-bottom: 5px;
+    padding: 8px 10px;
     border: 1px solid #d2d2d2;
-
+    border-radius: 5px;
 }
 
 /* コピーボタンを押した後の分割結果 */
-.generated-textarea.clicked {
+#output textarea.clicked {
     background-color: #f7f7f7;
     color: #ffffff;
-    border: 1px solid #d2d2d2;
+    border: 1px solid #f6f6f6;
 }
 
+#output .button-clicked {
+    background-color: #d2d2d2;
+}
 
 footer {
     position: fixed;
@@ -160,20 +210,21 @@ footer {
 
 @media (max-width: 600px) {
 
-    body{
+    body {
         margin: 10px;
     }
 
     /* スマホ画面サイズ用のCSS */
     .text-input {
         width: 100%;
-        
+
     }
 
-    h1{
+    h1 {
         font-size: 20px;
     }
-    h2{
+
+    h2 {
         font-size: 12px;
     }
 

@@ -28,52 +28,54 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // テキスト分割
 function splitText() {
-    const textInput = document.getElementById("text-input").value;
-    const maxLengthInput = document.getElementById("max-length-input");
-    const maxLen = parseInt(maxLengthInput.value, 10);
-    const regexp = new RegExp(`.{1,${maxLen}}[。．！？.]`, "g");
-    const splitText = textInput.replace(/\n/g, ";").match(regexp);
-    const output = document.getElementById("output");
-    const statsOutput = document.getElementById("output-stats");
-    output.innerHTML = "";
-    statsOutput.innerHTML = `<p> ${splitText.length} 個に分割しました。</p>`;
+  const textInput = document.getElementById("text-input").value;
+  const maxLengthInput = document.getElementById("max-length-input");
+  const maxLen = parseInt(maxLengthInput.value, 10);
+  const regexp = new RegExp(`.{1,${maxLen}}[。．！？.]`, "g");
+  const splitText = textInput.replace(/\n/g, ";").match(regexp);
+  const output = document.getElementById("output");
+  const statsOutput = document.getElementById("output-stats");
+  output.innerHTML = "";
+  statsOutput.innerHTML = `<p> ${splitText.length} 個に分割しました。</p>`;
 
-    splitText.forEach((text, index) => {
-        const div = document.createElement("div");
-        const textareaId = `textarea${index}`;
-        const textarea = document.createElement("textarea");
-        textarea.id = textareaId;
-        textarea.type = "text";
-        textarea.value = text.replace(/\;/g, "\n");
-        textarea.classList.add("generated-textarea");
-        div.appendChild(textarea);
-
-
-        // 文字数をカウントする関数
-        function countTextAreaCharacters() {
-            const characters = textarea.value.length;
-            document.getElementById(`${textareaId}-characters`).textContent = `${characters}`;
-        }
+  splitText.forEach((text, index) => {
+    const div = document.createElement("div");
+    const textareaId = `textarea${index}`;
+    const textarea = document.createElement("textarea");
+    textarea.id = textareaId;
+    textarea.type = "text";
+    textarea.value = text.replace(/\;/g, "\n");
+    textarea.classList.add("generated-textarea");
+    div.appendChild(textarea);
 
 
-        // テキストエリアのイベントにcountTextAreaCharacters関数を登録
-        textarea.addEventListener("input", countTextAreaCharacters);
+    // 文字数をカウントする関数
+    function countTextAreaCharacters() {
+      const characters = textarea.value.length;
+      document.getElementById(`${textareaId}-characters`).textContent = `${characters}`;
+    }
 
-        const countSpan = document.createElement("span");
-        countSpan.id = `${textareaId}-characters`;
-        countSpan.textContent = `${text.replace(/\;/g, "\n").length}文字`;
-        div.appendChild(countSpan);
 
-        const copyButton = document.createElement("button");
-        copyButton.textContent = "コピー";
-        copyButton.addEventListener("click", function () {
-            textarea.select();
-            document.execCommand("copy");
-            textarea.classList.add("clicked");
-        });
-        div.appendChild(copyButton);
-        output.appendChild(div);
+    // テキストエリアのイベントにcountTextAreaCharacters関数を登録
+    textarea.addEventListener("input", countTextAreaCharacters);
+
+    const countSpan = document.createElement("span");
+    countSpan.id = `${textareaId}-characters`;
+    countSpan.textContent = `${text.replace(/\;/g, "\n").length}文字`;
+    div.appendChild(countSpan);
+
+    const copyButton = document.createElement("button");
+    copyButton.textContent = "コピー";
+    copyButton.addEventListener("click", function () {
+      textarea.select();
+      document.execCommand("copy");
+      textarea.classList.add("clicked");
+      // スタイルを変更するコードを追加する
+      copyButton.classList.add("button-clicked");
     });
+    div.appendChild(copyButton);
+    output.appendChild(div);
+  });
 }
 
 // 分割する文字数を増減する+-ボタン※デフォルトのスピンボタンを使わないため
@@ -106,7 +108,6 @@ document.addEventListener('DOMContentLoaded', function () {
     clearInterval(intervalID); // タイマーを解除する
   });
 });
-
 
 // 消去ボタン
 function clearInput() {

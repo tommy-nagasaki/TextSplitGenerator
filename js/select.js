@@ -70,6 +70,8 @@ function splitText() {
             textarea.select();
             document.execCommand("copy");
             textarea.classList.add("clicked");
+            // スタイルを変更するコードを追加する
+            copyButton.classList.add("button-clicked");
         });
         div.appendChild(copyButton);
         output.appendChild(div);
@@ -106,7 +108,6 @@ document.addEventListener('DOMContentLoaded', function () {
         clearInterval(intervalID); // タイマーを解除する
     });
 });
-
 
 // 消去ボタン
 function clearInput() {
