@@ -1,3 +1,5 @@
+let inputLength; // inputLength変数の宣言をDOMContentLoaded外部に移動
+
 // 入力文字数を表示する
 window.addEventListener('DOMContentLoaded', () => {
     const textInput = document.getElementById("text-input");
@@ -5,6 +7,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     textInput.addEventListener('input', () => {
         length.textContent = textInput.value.length;
+        inputLength = textInput.value.length;
     }, false);
 
     textInput.addEventListener('drop', (event) => {
@@ -18,12 +21,19 @@ window.addEventListener('DOMContentLoaded', () => {
             reader.onload = function () {
                 textInput.value = reader.result;
                 length.textContent = textInput.value.length;
+                inputLength = textInput.value.length;
             };
         } else {
             textInput.value = `ファイル名: ${data.name}\nタイプ: ${data.type}\nサイズ: ${data.size} bytes`;
             length.textContent = textInput.value.length;
+            inputLength = textInput.value.length;
         }
     }, false);
+
+    // 別のスコープでinputLengthを使う
+    function someFunction() {
+        console.log(inputLength);
+    }
 });
 
 // テキスト分割
@@ -32,11 +42,13 @@ function splitText() {
     const maxLengthInput = document.getElementById("max-length-input");
     const maxLen = parseInt(maxLengthInput.value, 10);
     const regexp = new RegExp(`.{1,${maxLen}}[。．！？.]`, "g");
-    const splitText = textInput.replace(/\n/g, ";").match(regexp);
+    const splitText = textInput.replace(/\n/g, "﷐").match(regexp);
     const output = document.getElementById("output");
     const statsOutput = document.getElementById("output-stats");
+    const reinputLength = inputLength; // inputLengthを使用
     output.innerHTML = "";
-    statsOutput.innerHTML = `<p> ${splitText.length} 個に分割しました。</p>`;
+    statsOutput.innerHTML = `<p><span>入力された</span> ${reinputLength} 文字を ${splitText.length} 個<span>のファイル</span>に分割しました。</p>`;
+
 
     splitText.forEach((text, index) => {
         const div = document.createElement("div");
@@ -44,7 +56,7 @@ function splitText() {
         const textarea = document.createElement("textarea");
         textarea.id = textareaId;
         textarea.type = "text";
-        textarea.value = text.replace(/\;/g, "\n");
+        textarea.value = text.replace(/﷐/g, "\n");
         textarea.classList.add("generated-textarea");
         div.appendChild(textarea);
 
@@ -72,11 +84,23 @@ function splitText() {
             textarea.classList.add("clicked");
             // スタイルを変更するコードを追加する
             copyButton.classList.add("button-clicked");
+
+            const message = document.createElement("p");
+            message.textContent = "クリップボードにコピーされました";
+            message.classList.add("copy-message");
+            div.appendChild(message);
+
+            // 2秒後にメッセージを消す
+            setTimeout(function () {
+                div.removeChild(message);
+            }, 2000);
         });
         div.appendChild(copyButton);
         output.appendChild(div);
+
     });
 }
+
 
 // 分割する文字数を増減する+-ボタン※デフォルトのスピンボタンを使わないため
 document.addEventListener('DOMContentLoaded', function () {

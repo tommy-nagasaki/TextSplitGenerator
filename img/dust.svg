@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="a" data-name=" レイヤー 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25">
+  <g>
+    <path class="b" d="m18.5,4h-3.5v-2h-5v2h-3.5v1h12v-1Zm-7.5-1h3v1h-3v-1Z" fill="currentColor"/>
+    <rect class="b" x="12" y="11.5" width="1" height="7" fill="currentColor"/>
+    <polygon class="b" points="5.5 6 4.5 6 2.5 6 2.5 7 4.5 7 4.5 20 5.5 20 5.5 7 5.5 6" fill="currentColor"/>
+    <rect class="b" x="6.5" y="8" width="12" height="1" fill="currentColor"/>
+    <rect class="b" x="9" y="11.5" width="1" height="7" fill="currentColor"/>
+    <path class="b" d="m20.5,12.92v-5.92h2v-1h-3v6.6c-.32-.07-.66-.1-1-.1-.91,0-1.76.26-2.5.7v-1.7h-1v2.44c-.92.91-1.5,2.17-1.5,3.56,0,.91.26,1.76.7,2.5H5.5v1h9.44c.91.92,2.17,1.5,3.56,1.5,2.76,0,5-2.24,5-5,0-2.05-1.24-3.8-3-4.58Zm-2,8.58c-2.21,0-4-1.79-4-4s1.79-4,4-4,4,1.79,4,4-1.79,4-4,4Z" fill="currentColor"/>
+    <polygon class="b" points="20.25 15.05 18.5 16.79 16.75 15.05 16.05 15.75 17.79 17.5 16.05 19.25 16.75 19.95 18.5 18.21 20.25 19.95 20.95 19.25 19.21 17.5 20.95 15.75 20.25 15.05" fill="currentColor"/>
+  <rect class="c" width="25" height="25" fill: none;/>  
+  </g>
+  
+</svg>

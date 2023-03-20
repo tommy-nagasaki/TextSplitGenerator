@@ -1,112 +1,326 @@
-/* 全体のフォント */
-.wf-mplus1p {
-    font-family: "M PLUS 1p";
-}
-
-/* .text {
-    transform: rotate(0.05deg);
-} */
-
-/* 全体を中央配置 */
+/* 画面全体 */
 body {
+    /* 画面幅から40pxずつ余白を引いた値をwidthに設定 */
+    width: calc(100% - 40px);
+    /* 両サイドに20pxの余白を設定 */
+    margin: 0 20px;
+}
+
+/* ヘッダー */
+header {
     display: flex;
-    flex-flow: column;
+    justify-content: space-between;
     align-items: center;
-    font-family: "M PLUS 1p";
 }
 
-/* タイトルテキスト */
-h1 {
-    margin-top: 30px;
-    font-size: 30px;
+/* ラボアイコン */
+.labicon {
+    width: 30px;
+    height: 30px;
+    margin-right: auto;
+}
+
+/* ラボロゴ */
+.labname {
+    margin-right: auto;
+    font-family: Gill Sans、Gill Sans MT、Calibri、sans-serif;
     font-weight: bold;
-    color: #444;
+    text-align: right;
+    margin-left: 10px;
+}
+
+/* 三本線メニュー */
+.menu {
+    margin-left: auto;
+    text-align: left;
+}
+
+/*** メニュー三本線全体 ***/
+.menu-btn {
+    display: block;
+    /*線の起点*/
+    position: relative;
+    /*ボタンの幅*/
+    width: 50px;
+    /*ボタンの高さ*/
+    height: 50px;
+    /*クリック可能を伝える*/
+    cursor: pointer;
+    /*最前面*/
+    z-index: 100;
+}
+
+/*** ボタンの三本線（共通） ***/
+.menu-btn span {
+    position: absolute;
+    /*線の長さ*/
+    width: 40%;
+    /*線の太さ*/
+    height: 2px;
+    /*中央から長さの半分を引く*/
+    left: calc(50% - 40% / 2);
+    /*線の色*/
+    background: #000;
+    /* 0.4秒で変化 */
+    transition: .4s;
+}
+
+/* 順に上・中・下の線 */
+.top-bar {
+    /*上から35%の位置*/
+    top: calc(35% - 2px / 2);
+}
+
+.center-bar {
+    /*上から50%の位置*/
+    top: calc(50% - 2px / 2);
+}
+
+.under-bar {
+    /*上から65%の位置*/
+    top: calc(65% - 2px / 2);
+}
+
+
+/** クリック後(✔が入った後)の線 **/
+/*上の線*/
+#open:checked~.menu-btn>.top-bar {
+    /*中央*/
+    top: calc(50% - 2px / 2);
+    /*45度回転*/
+    transform: rotate(45deg);
+}
+
+/*中の線*/
+#open:checked~.menu-btn>.center-bar {
+    /*真ん中の線は透過*/
+    opacity: 0;
+}
+
+/*下の線*/
+#open:checked~.menu-btn>.under-bar {
+    /*中央*/
+    top: calc(50% - 2px / 2);
+    /*-45度回転*/
+    transform: rotate(-45deg);
+}
+
+/*** 三本線と✕を切り替えるチェックボックスは非表示に ***/
+#open {
+    display: none;
+}
+
+
+/*** メニュー内容 ***/
+.inner-menu {
+    position: fixed;
+    /*画面固定*/
+    top: 0;
+    left: 0;
+    width: 100vw;
+    /*全画面*/
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 50px 60px;
+    /*ボタンと被らない位には*/
+    background: #eee;
+    /*背景*/
+    opacity: 0;
+    /*透明*/
+    visibility: hidden;
+    /*標準で非表示*/
+    transition: .5s;
+    z-index: 99;
+    /*ボタンより背面(小さい値)*/
+    overflow-y: scroll;
+    /*スクロール可*/
     text-align: center;
 }
 
-/* 機能説明 */
-h2 {
-    margin-top: 15px;
-    margin-bottom: 30px;
-    font-size: 15px;
-    text-align: center;
-
+/*リスト*/
+.inner-menu ul {
+    list-style: none;
+    /*丸を消す*/
+    padding-left: 0;
 }
 
+/*リンク*/
+.inner-menu a {
+    color: inherit;
+    text-decoration: none;
+}
 
-/* 入力欄 */
-.text-input {
-    width: 500px;
-    height: 100px;
-    padding: 8px 10px;
-    border: 1px solid #d2d2d2;
-    border-radius: 5px;
-    background: #f7f7f7;
-    color: #555;
-    line-height: 1.5;
+/*** クリックで(✔が入ったら)メニューを表示 ***/
+#open:checked~.inner-menu {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+/* タイトルエリア */
+.title-container {
+    display: flex;
+}
+
+/* サービス名：テキスト分割ジェネレーター */
+h1 {
     margin-bottom: 10px;
 }
 
-/* 入力欄の中の文字 */
-.text-input::placeholder {
-    color: #999;
+/* 機能説明モーダル */
+
+/* モーダル用チェックボックス */
+.modal_wrap input {
+    display: none;
 }
 
-/* キャッチ */
-h3 {
-    font-size: 10px;
-    margin-bottom: 30px;
-    color: #999;
-    text-align: center;
-}
-
-
-/* コントロールエリア（分割数、分割ボタン、入力文字数、消去ボタン） */
-.control-area {
-    display: flex;
-    justify-content: space-between;
-    width: 500px;
-    margin-bottom: 30px;
-}
-
-/* コントロールエリア左（分割数、分割ボタン） */
-.control-area-left {
-    display: flex;
-    align-items: center;
-}
-
-/* コントロールエリア右（入力文字数、消去ボタン） */
-.control-area-right {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-
-/* ボタン */
-button {
+/* モーダル全体 */
+.modal_overlay {
     display: flex;
     justify-content: center;
-    align-items: center;
-    width: 95px;
-    padding: .5em;
-    border-radius: 5px;
-    background-color: #7f7f7f;
-    color: #fff;
-    font-size: 1em;
-    margin: 2px;
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    transition: opacity 0.5s, transform 0s 0.5s;
+    transform: scale(0);
 }
 
-button:hover {
-    background-color: #f7f7f7;
-    color: #555;
+/* モーダルラベル */
+.modal_trigger {
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
-/* 分割文字数指定エリア */
-.max-length-input {
+/* モーダル画面全体 */
+.modal_content {
+    align-self: center;
+    width: 60%;
+    padding: 40px;
+    box-sizing: border-box;
+    background: #fff;
+    line-height: 1.4em;
+    transition: 0.5s;
+}
+
+/* モーダル内のテキストの設定 */
+.modal_content p {
+    padding-top: 0;
+}
+
+/* モーダルを閉じるボタンのラベル */
+.close_button {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* モーダルが表示されるときの背景設定 */
+.modal_wrap input:checked~.modal_overlay {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.5s;
+}
+
+/* モーダルが表示されるときにスライドインする */
+.modal_wrap input:checked~.modal_overlay .modal_content {
+    transform: translateY(20px);
+}
+
+/* モーダルボタン */
+.open_button {
+    cursor: pointer;
+    margin-left: 5px;
+
+}
+
+/* モダールアイコン */
+.icon {
+    width: 15px;
+    height: 15px;
+    color: #000;
+}
+
+/* モダールアイコンホバー時 */
+.icon:hover {
+    color: #0FCCAD;
+}
+
+
+/* モーダルタイトル */
+h2 {
+    color: #0FCCAD;
+    font-weight: bolder;
+}
+
+/* モーダル内テキスト分割ジェネレーターの説明 */
+h3 {
+    font-size: small;
+    margin-bottom: 20px;
+}
+
+/* モーダル内テキスト分割ジェネレーターの使い方 */
+.list-number {
+    color: #0FCCAD;
+    font-weight: bolder;
+    margin-right: 10px;
+}
+
+
+
+/* 入力 */
+.input-container {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-/* 分割文字数のスピンボタンを非表示 */
+/* ドラック＆ドロップを受け付けるエリア */
+.text-input-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* テキストエリア */
+.text-input {
+    background-color: #F2F2F2;
+    width: 100%;
+    height: 100px;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+
+/* 入力したテキストを操作するエリア */
+.control-area {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* 左寄せの要素 */
+.control-area-left {
+    display: flex;
+    flex-direction: row;
+}
+
+/* 分割文字数指定 */
+
+/* スピンボタンを非表示にする */
 /* Chrome/Safari */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
@@ -119,124 +333,286 @@ input[type="number"] {
     appearance: extfield;
 }
 
+/* 分割文字数を指定するエリア */
+.max-length-input {
+    display: flex;
+    flex-direction: row;
+}
+
+/* 最大何文字で分割するか */
 #max-length-input {
-    display: flex;
-    align-items: center;
-    width: 50px;
+    width: 60px;
+    font-size: 18px;
 }
 
-.max-length-input-assisttext {
-    display: flex;
-    align-items: center;
-}
-
+/* 「+」 */
 #max-length-input-up {
-    width: 30px;
+    padding: 10px;
+    font-size: large;
 }
 
+#max-length-input-up:hover {
+    color: #0FCCAD;
+    font-weight: bolder;
+    cursor: pointer;
+    background-color: #e2f7f4;
+}
+
+/* 「-」 */
 #max-length-input-down {
-    width: 30px;
+    padding: 10px;
+    font-size: large;
 }
 
-.output-container{
+#max-length-input-down:hover {
+    color: #0FCCAD;
+    font-weight: bolder;
+    cursor: pointer;
+    background-color: #e2f7f4;
+}
+
+/* ゴミ箱（消去ボタン） */
+.dust {
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+    color: #000;
+}
+
+.dust:hover {
+    color: #0FCCAD;
+    cursor: pointer;
+}
+
+.clear-button:hover {
+    background-color: #e2f7f4;
+    cursor: pointer;
+}
+
+
+/* 右寄せの要素 */
+.control-area-right {
     display: flex;
-    flex-direction: column;
-    width: 500px;
-}
-
-#output-stats p{
-    margin-bottom: 15px;
-    font-size: 25px;
-    font-weight: bold;
-    color: #444;
-}
-
-#output{
-    display: flex;
-    flex-wrap: wrap;
-    align-content: space-around;
-    width: 100%;
-    background-color: #f7f7f7;
-    border-radius: 5px;
-}
-
-#output div{
-    display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
-    border-radius: 5px;
-    width: 113px;
-    height: 115px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-left: 10px;
 }
 
+/* 入力文字数 */
+.input-text-length {
+    font-size: small;
+    color: #C9C9C9;
+    line-height: 1.5;
+}
 
-#output textarea{
-    width: 95px;
+/* 補助テキスト */
+.input-text-length-assisttext {
+    margin-right: 10px;
+    font-size: small;
+    color: #C9C9C9;
+    line-height: 1.5;
+}
+
+/* 点滅 */
+.blink {
+    animation: blink 1.3s infinite;
+}
+
+@keyframes blink {
+    100% {
+        opacity: 0;
+    }
+}
+
+/* 分割ボタン */
+.split-button {
+    width: 100px;
     height: 40px;
-    margin-bottom: 5px;
-    padding: 8px 10px;
-    border: 1px solid #d2d2d2;
-    border-radius: 5px;
+    border-radius: 100vh;
+    background-color: #0FCCAD;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    color: #fff;
 }
 
-/* コピーボタンを押した後の分割結果 */
-#output textarea.clicked {
-    background-color: #f7f7f7;
-    color: #ffffff;
-    border: 1px solid #f6f6f6;
+.split-button:hover {
+    background-color: #FFDE44;
+}
+
+/* 結果 */
+/* .output-container {} */
+/* <!-- いくつに分割されたか --> */
+/* #output-stats{} */
+#output-stats p {
+    position: relative;
+    background: #FFF;
+    padding: 10px 20px 10px 20px;
+    margin: 10px 0 20px 0;
+    border: 1px solid #C9C9C9;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    display: inline-block;
+    width: 100%;
+}
+
+#output-stats p:after,
+#output-stats p:before {
+    border: solid transparent;
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: calc(100% - 45px);
+}
+
+#output-stats p:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-top-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 10px;
+    border-right-width: 10px;
+    margin-left: -10px;
+    border-bottom-color: #FFF;
+}
+
+#output-stats p:before {
+    border-color: rgba(0, 0, 0, 0);
+    border-top-width: 11px;
+    border-bottom-width: 11px;
+    border-left-width: 11px;
+    border-right-width: 11px;
+    margin-left: -11px;
+    border-bottom-color: #C9C9C9;
+}
+
+/* <!-- 分割後のテキスト --> */
+#output {
+    display: flex;
+    flex-wrap: wrap;
+    margin: calc(-10px / 2);
+}
+
+#output div {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% / 4 - 10px);
+    margin: calc(10px / 2);
+}
+
+#output textarea {
+    height: 1px;
+    opacity: 0;
+}
+
+#output span {
+    background-color: #F2F2F2;
+    height: 40px;
+    border-radius: 15px 15px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#output button {
+    background-color: #0FCCAD;
+    height: 40px;
+    border-radius: 0 0 15px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    color: #FFF;
+}
+
+#output button:hover {
+    background-color: #FFDE44;
+    cursor: pointer;
 }
 
 #output .button-clicked {
+    color: #fff;
     background-color: #d2d2d2;
 }
 
+p.copy-message {
+    position: fixed;
+    bottom: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(1, 1, 1, 0.5);
+    color: #FFF;
+    padding: 10px 40px;
+    border-radius: 15px;
+    white-space: nowrap;
+    font-size: small;
+}
+
+/* <!-- フッター --> */
 footer {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #FFF;
     color: #999;
     font-size: 10px;
     padding: 10px;
     text-align: center;
 }
 
-@media (max-width: 600px) {
 
+/* 画面が510px以下になったら */
+@media screen and (max-width: 510px) {
     body {
-        margin: 10px;
+        width: calc(100% - 20px);
+        /* 画面幅から10pxずつ余白を引いた値をwidthに設定 */
+        margin: 0 10px;
+        /* 両サイドに10pxの余白を設定 */
     }
 
-    /* スマホ画面サイズ用のCSS */
-    .text-input {
-        width: 100%;
-
+    /* <!-- 入力文字数 --> */
+    .input-text-length {
+        display: none;
     }
 
-    h1 {
-        font-size: 20px;
+    .input-text-length-assisttext {
+        display: none;
     }
 
-    h2 {
-        font-size: 12px;
+    #output-stats p span {
+        display: none;
     }
 
-    .control {
-        width: 100%;
-        font-size: small;
+    #output div {
+        width: calc(100% / 3 - 10px);
     }
 
-    button {
-        width: 50px;
+}
+
+/* 画面が620px以上になったら */
+@media screen and (min-width: 620px) {
+    body {
+        width: calc(100% - 80px);
+        /* 画面幅から40pxずつ余白を引いた値をwidthに設定 */
+        margin: 0 40px;
+        /* 両サイドに40pxの余白を設定 */
     }
 
-    .bottom-bar {
-        font-size: 10px;
+    #output div {
+        width: calc(100% / 5 - 10px);
+    }
+}
+
+/* 画面が800px以上になったら */
+@media screen and (min-width: 800px) {
+    body {
+        width: 720px;
+        margin: auto;
+    }
+
+    #output div {
+        width: calc(100% / 6 - 10px);
     }
 }
