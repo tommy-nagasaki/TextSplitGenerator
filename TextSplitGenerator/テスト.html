@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>テキスト分割ジェネレーター</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/destyle.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/テスト.css'>
+    <script src='js/テスト.js'></script>
+</head>
+
+<body>
+    <!-- タイトル -->
+    <header>
+        <!-- ラボアイコン -->
+        <a href="" ><img src="img/labrobo.svg" alt="" class="labicon"></a>
+        <!-- ラボロゴ -->
+        <p class="labname">Tommy's LAB</p>
+        <!-- メニュー -->
+        <div class="menu">
+            <!-- チェックボックス（三本線を✕に変えるための隠し要素） -->
+            <input type="checkbox" id="open">
+            <!-- 三本線メニュー -->
+            <label for="open" class="menu-btn">
+                <span class="top-bar"></span> <!--上の線-->
+                <span class="center-bar"></span> <!--中の線-->
+                <span class="under-bar"></span> <!--下の線-->
+            </label>
+        </div>
+    </header>
+        <div class="title-container">
+
+            <h1>テキスト分割ジェネレーターv2.0.0</h1>
+
+            <div class="modal_wrap">
+                <input id="trigger" type="checkbox">
+                <div class="modal_overlay">
+                    <label for="trigger" class="modal_trigger"></label>
+                    <div class="modal_content">
+                        <label for="trigger" class="close_button">✖️</label>
+                        <h2>入力したテキストを指定文字数内の「。(句点)」または「.(ピリオド)」で分割します</h2><h3>日本語、英語、中国語、韓国語、その他「。(句点)」や「.(ピリオド)」で区切る言語であれば分割できます。</h3>
+                        <ol>
+                            <li><span class="list-number">1.</span>テキストを入力またはドラック＆ドロップ</li>
+                            <li><span class="list-number">2.</span>入力欄左下の5000を分割したい文字数に変更</li>
+                            <li><span class="list-number">3.</span>入力欄右下の分割ボタンをクリック</li>
+                            <li><span class="list-number">4.</span>分割結果が表示されます</li>
+                            <li><span class="list-number">5.</span>コピーボタンをクリックしてクリップボードにコピー</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <label for="trigger" class="open_button">
+                    <svg class="icon">
+                        <use xlink:href="img/info.svg#b"></use>
+                    </svg>
+                </label>
+            </div>
+            
+        </div>
+    
+
+        <!-- 入力 -->
+        <main>
+            <div class="input-container">
+                <div class="text-input-area">
+                    <textarea id="text-input" class="text-input" placeholder="テキストを入力するかファイルをドロップしてください。"></textarea>
+                </div>
+
+                <div class="control-area">
+                    <div class="control-area-left">
+                        <!-- 分割文字数指定 -->
+                        <div class="max-length-input">
+                            <input type="number" id="max-length-input" step="1000" min="1000" max="10000" value="5000" input inputmode="numeric"/>
+                            <button id="max-length-input-up">＋</button>
+                            <button id="max-length-input-down">－</button>
+                        </div>
+                        <!-- 消去ボタン -->
+                        <button class="clear-button" onclick="clearInput()">
+                            <svg class="dust">
+                            <use xlink:href="img/dust.svg#a"></use>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="control-area-right">
+                        <!-- 入力文字数 -->
+                        <p class="input-text-length" id="input-text-length">0</p>
+                        <div  class="input-text-length-assisttext">
+                            文字入力中<span class="blink">_</span>
+                        </div>
+                        <!-- 分割ボタン -->
+                        <button class="split-button" onclick="splitText()">分割</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 結果 -->
+            <div class="output-container">
+                <!-- いくつに分割されたか -->
+                <p id="output-stats">
+                    <!-- ココに子要素`<p> ${splitText.length} 個に分割しました。</p>`が入る -->
+                </p>
+                <!-- 分割後のテキスト -->
+                <div id="output">
+                    <!-- ココに子要素.createElement("div")が入る -->
+                    <!-- ココに孫要素.createElement("textarea")が入る -->
+                    <!-- ココに孫要素.createElement("span")が入る -->
+                    <!-- ココに孫要素.createElement("button")が入る -->
+                </div>
+            </div>
+
+    </main>
+   
+    <!-- <div class="return-top">
+        <a href="#">↑</a>
+    </div> -->
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-container">
+        <a href="index.html">分割ジェネレーター</a>
+        © 2023-2023
+        <a href="terms.html">利用規約</a>
+        |
+        <a href="log.html">support@xxxx.com</a>
+        </div>
+    </footer>
+</body>
+
+</html>
