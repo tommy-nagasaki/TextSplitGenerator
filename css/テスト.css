@@ -1,5 +1,11 @@
 /* 画面全体 */
 body {
+    font-family: "Helvetica Neue",
+            Arial,
+            "Hiragino Kaku Gothic ProN",
+            "Hiragino Sans",
+            Meiryo,
+            sans-serif;
     /* 画面幅から40pxずつ余白を引いた値をwidthに設定 */
     width: calc(100% - 40px);
     /* 両サイドに20pxの余白を設定 */
@@ -23,7 +29,6 @@ header {
 /* ラボロゴ */
 .labname {
     margin-right: auto;
-    font-family: Gill Sans、Gill Sans MT、Calibri、sans-serif;
     font-weight: bold;
     text-align: right;
     margin-left: 10px;
