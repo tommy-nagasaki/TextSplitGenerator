@@ -50,6 +50,7 @@ function splitText() {
     statsOutput.innerHTML = `<p><span>入力された</span> ${reinputLength} 文字を ${splitText.length} 個<span>のファイル</span>に分割しました。</p>`;
 
 
+
     splitText.forEach((text, index) => {
         const div = document.createElement("div");
         const textareaId = `textarea${index}`;
@@ -98,6 +99,7 @@ function splitText() {
         div.appendChild(copyButton);
         output.appendChild(div);
 
+
     });
 }
 
@@ -120,8 +122,20 @@ document.addEventListener('DOMContentLoaded', function () {
             numberInput.stepUp();
         }, 100); // 0.1秒ごとにステップアップ
     });
+    upButton.addEventListener('touchstart', () => {
+        numberInput.stepUp();
+        intervalID = setInterval(() => {
+            numberInput.stepUp();
+        }, 100); // 0.1秒ごとにステップアップ
+    });
     // ダウンボタンが長押しされた時の処理
     downButton.addEventListener('mousedown', () => {
+        numberInput.stepDown();
+        intervalID = setInterval(() => {
+            numberInput.stepDown();
+        }, 100); // 0.1秒ごとにステップダウン
+    });
+    downButton.addEventListener('touchstart', () => {
         numberInput.stepDown();
         intervalID = setInterval(() => {
             numberInput.stepDown();
@@ -131,6 +145,10 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('mouseup', () => {
         clearInterval(intervalID); // タイマーを解除する
     });
+    document.addEventListener('touchend', () => {
+        clearInterval(intervalID); // タイマーを解除する
+    });
+
 });
 
 // 消去ボタン
