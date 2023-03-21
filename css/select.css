@@ -351,6 +351,7 @@ input[type="number"] {
     font-size: large;
 }
 
+/* ホバー時に「+」の色を変える */
 #max-length-input-up:hover {
     color: #0FCCAD;
     font-weight: bolder;
@@ -364,6 +365,7 @@ input[type="number"] {
     font-size: large;
 }
 
+/* ホバー時に「-」の色を変える */
 #max-length-input-down:hover {
     color: #0FCCAD;
     font-weight: bolder;
@@ -379,11 +381,13 @@ input[type="number"] {
     color: #000;
 }
 
-.dust:hover {
+/* ホバー時にアイコンの色を変える */
+.clear-button:hover .dust {
     color: #0FCCAD;
     cursor: pointer;
 }
 
+/* ホバー時にボタン範囲の色を変える */
 .clear-button:hover {
     background-color: #e2f7f4;
     cursor: pointer;
@@ -437,6 +441,7 @@ input[type="number"] {
     color: #fff;
 }
 
+/* ホバー時に分割ボタンの色を変える */
 .split-button:hover {
     background-color: #FFDE44;
 }

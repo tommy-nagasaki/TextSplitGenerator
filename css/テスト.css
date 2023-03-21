@@ -3,7 +3,7 @@ body {
     /* 画面幅から40pxずつ余白を引いた値をwidthに設定 */
     width: calc(100% - 40px);
     /* 両サイドに20pxの余白を設定 */
-    margin: 0 20px;
+    margin: 0 20px 80px 20px;
 }
 
 /* ヘッダー */
@@ -351,6 +351,7 @@ input[type="number"] {
     font-size: large;
 }
 
+/* ホバー時に「+」の色を変える */
 #max-length-input-up:hover {
     color: #0FCCAD;
     font-weight: bolder;
@@ -364,6 +365,7 @@ input[type="number"] {
     font-size: large;
 }
 
+/* ホバー時に「-」の色を変える */
 #max-length-input-down:hover {
     color: #0FCCAD;
     font-weight: bolder;
@@ -379,11 +381,13 @@ input[type="number"] {
     color: #000;
 }
 
-.dust:hover {
+/* ホバー時にアイコンの色を変える */
+.clear-button:hover .dust {
     color: #0FCCAD;
     cursor: pointer;
 }
 
+/* ホバー時にボタン範囲の色を変える */
 .clear-button:hover {
     background-color: #e2f7f4;
     cursor: pointer;
@@ -437,6 +441,7 @@ input[type="number"] {
     color: #fff;
 }
 
+/* ホバー時に分割ボタンの色を変える */
 .split-button:hover {
     background-color: #FFDE44;
 }
@@ -568,7 +573,7 @@ footer {
     body {
         width: calc(100% - 20px);
         /* 画面幅から10pxずつ余白を引いた値をwidthに設定 */
-        margin: 0 10px;
+        margin: 0 10px 80px 10px;
         /* 両サイドに10pxの余白を設定 */
     }
 
@@ -596,7 +601,7 @@ footer {
     body {
         width: calc(100% - 80px);
         /* 画面幅から40pxずつ余白を引いた値をwidthに設定 */
-        margin: 0 40px;
+        margin: 0 40px 80px 40px;
         /* 両サイドに40pxの余白を設定 */
     }
 
@@ -610,6 +615,7 @@ footer {
     body {
         width: 720px;
         margin: auto;
+        margin-bottom: 80px;
     }
 
     #output div {

@@ -58,8 +58,8 @@ function splitText() {
         textarea.type = "text";
         textarea.value = text.replace(/﷐/g, "\n");
         textarea.classList.add("generated-textarea");
+        textarea.readOnly = true; // readOnly属性を追加
         div.appendChild(textarea);
-
 
         // 文字数をカウントする関数
         function countTextAreaCharacters() {
