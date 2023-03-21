@@ -279,7 +279,18 @@ h3 {
     margin-right: 10px;
 }
 
+ol {
+    list-style-position: inside;
+}
 
+li {
+    display: flex;
+    align-items: flex-start;
+}
+
+.list-number {
+    flex-shrink: 0;
+}
 
 /* 入力 */
 .input-container {
@@ -581,6 +592,11 @@ footer {
         margin: 0 10px 80px 10px;
         /* 両サイドに10pxの余白を設定 */
     }
+
+        .modal_content {
+            width: 95%;
+            padding: 40px 10px;
+        }
 
     /* <!-- 入力文字数 --> */
     .input-text-length {
