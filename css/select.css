@@ -212,6 +212,7 @@ h1 {
     background: #fff;
     line-height: 1.4em;
     transition: 0.5s;
+    border-radius: 15px;
 }
 
 /* モーダル内のテキストの設定 */
@@ -557,6 +558,7 @@ input[type="number"] {
     background-color: #d2d2d2;
 }
 
+/* コピーボタンを押した後表示するメッセージ */
 p.copy-message {
     position: fixed;
     bottom: 35px;
@@ -564,10 +566,10 @@ p.copy-message {
     transform: translateX(-50%);
     background-color: rgba(1, 1, 1, 0.5);
     color: #FFF;
-    padding: 10px 40px;
-    border-radius: 15px;
+    padding: 15px 40px;
+    border-radius: 20px;
     white-space: nowrap;
-    font-size: small;
+    font-size: 70%;
 }
 
 /* <!-- フッター --> */
