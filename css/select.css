@@ -447,19 +447,57 @@ input[type="number"] {
 
 /* 分割ボタン */
 .split-button {
-    width: 100px;
+    display: flex;
+    width: fit-content;
+}
+
+.box1 {
+    width: 50px;
     height: 40px;
-    border-radius: 100vh;
-    background-color: #0FCCAD;
+    border-radius: 20px 0px 0px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: bolder;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    background: #0FCCAD;
+    overflow: hidden;
+}
+
+.box2 {
+    width: 50px;
+    height: 40px;
+    border-radius: 0px 20px 20px 0px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: bolder;
     color: #fff;
+    cursor: pointer;
+    position: relative;
+    background: #0FCCAD;
+    overflow: hidden;
 }
 
-/* ホバー時に分割ボタンの色を変える */
-.split-button:hover {
+
+.box1:before {
+    content: "　　分";
+}
+
+.box2:before {
+    content: "割　　";
+}
+
+.split-button:hover .box1 {
+    transform: translateY(-10%);
+    background-color: #FFDE44;
+}
+
+.split-button:hover .box2 {
+    transform: translateY(10%);
     background-color: #FFDE44;
 }
 
@@ -595,10 +633,10 @@ footer {
         /* 両サイドに10pxの余白を設定 */
     }
 
-        .modal_content {
-            width: 95%;
-            padding: 40px 10px;
-        }
+    .modal_content {
+        width: 95%;
+        padding: 40px 10px;
+    }
 
     /* <!-- 入力文字数 --> */
     .input-text-length {
@@ -645,3 +683,4 @@ footer {
         width: calc(100% / 6 - 10px);
     }
 }
+

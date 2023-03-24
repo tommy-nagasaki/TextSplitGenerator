@@ -122,7 +122,8 @@ document.addEventListener('DOMContentLoaded', function () {
             numberInput.stepUp();
         }, 100); // 0.1秒ごとにステップアップ
     });
-    upButton.addEventListener('touchstart', () => {
+    upButton.addEventListener('touchstart', (event) => {
+        event.preventDefault(); // デフォルトのブラウザ動作を防ぐ
         numberInput.stepUp();
         intervalID = setInterval(() => {
             numberInput.stepUp();
@@ -135,7 +136,8 @@ document.addEventListener('DOMContentLoaded', function () {
             numberInput.stepDown();
         }, 100); // 0.1秒ごとにステップダウン
     });
-    downButton.addEventListener('touchstart', () => {
+    downButton.addEventListener('touchstart', (event) => {
+        event.preventDefault(); // デフォルトのブラウザ動作を防ぐ
         numberInput.stepDown();
         intervalID = setInterval(() => {
             numberInput.stepDown();
@@ -148,6 +150,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('touchend', () => {
         clearInterval(intervalID); // タイマーを解除する
     });
+
 
 });
 
