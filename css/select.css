@@ -449,7 +449,6 @@ input[type="number"] {
 .split-button {
     display: flex;
     width: fit-content;
-    border-collapse: collapse;
 }
 
 .box1 {
@@ -466,7 +465,7 @@ input[type="number"] {
     position: relative;
     background: #0FCCAD;
     overflow: hidden;
-    border-right: 1px solid #0FCCAD;
+    border-right: none;
 }
 
 .box2 {
@@ -482,6 +481,7 @@ input[type="number"] {
     position: relative;
     background: #0FCCAD;
     overflow: hidden;
+    border-left: none;
 }
 
 .box1:before {
