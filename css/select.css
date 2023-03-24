@@ -449,6 +449,7 @@ input[type="number"] {
 .split-button {
     display: flex;
     width: fit-content;
+    outline: none;/* スマホで白い線が表示されないように */
 }
 
 .box1 {
