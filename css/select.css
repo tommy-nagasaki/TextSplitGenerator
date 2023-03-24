@@ -449,7 +449,7 @@ input[type="number"] {
 .split-button {
     display: flex;
     width: fit-content;
-    outline: none;/* スマホで白い線が表示されないように */
+    border-collapse: collapse;
 }
 
 .box1 {
@@ -466,6 +466,7 @@ input[type="number"] {
     position: relative;
     background: #0FCCAD;
     overflow: hidden;
+    border-right: 1px solid #0FCCAD;
 }
 
 .box2 {
@@ -482,7 +483,6 @@ input[type="number"] {
     background: #0FCCAD;
     overflow: hidden;
 }
-
 
 .box1:before {
     content: "　　分";
